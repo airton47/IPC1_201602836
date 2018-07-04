@@ -1,0 +1,10 @@
+digraph listadoble{
+nodo2042808967[label="PEQUENIO:1"];
+nodo2042808967->nodo1557229467;
+nodo1557229467->nodo2042808967;
+nodo1557229467[label="PEQUENIO:2"];
+nodo1557229467->nodo1077889625;
+nodo1077889625->nodo1557229467;
+nodo1077889625[label="GRANDE:3"];
+
+}
