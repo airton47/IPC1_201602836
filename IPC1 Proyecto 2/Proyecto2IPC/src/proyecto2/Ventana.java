@@ -67,7 +67,7 @@ public class Ventana extends JFrame {
 		contentPane.add(label1);
 		
 		JLabel label2 = new JLabel("Cantidad de Estaciones");
-		label2.setBounds(300, 37, 141, 14);
+		label2.setBounds(267, 39, 141, 14);
 		contentPane.add(label2);
 		
 		
@@ -80,22 +80,22 @@ public class Ventana extends JFrame {
 		
 		cantidadE = new JTextField();
 		cantidadE.setColumns(10);
-		cantidadE.setBounds(451, 37, 86, 20);
+		cantidadE.setBounds(418, 39, 76, 20);
 		contentPane.add(cantidadE);
 		
 		numeroE = new JTextField();
-		numeroE.setBounds(451, 80, 86, 20);
+		numeroE.setBounds(418, 82, 76, 20);
 		contentPane.add(numeroE);
 		numeroE.setColumns(10);
 
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setAutoscrolls(false);
-		scrollPane.setBounds(30, 128, 507, 472);
+		scrollPane.setBounds(30, 128, 464, 472);
 		contentPane.add(scrollPane);
 		
 		JLabel label3 = new JLabel("Cantidad de Escritorios");
-		label3.setBounds(300, 83, 131, 14);
+		label3.setBounds(267, 85, 141, 14);
 		contentPane.add(label3);
 		
 		
@@ -115,11 +115,14 @@ public class Ventana extends JFrame {
 		contentPane.add(lblView);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(547, 37, 677, 563);
+		tabbedPane.setBounds(504, 31, 720, 569);
 		contentPane.add(tabbedPane);
 		
 		JScrollPane scrGeneral = new JScrollPane();
 		tabbedPane.addTab("General", null, scrGeneral, null);
+		
+		JLabel lbGeneral = new JLabel();
+		scrGeneral.setViewportView(lbGeneral);
 		
 		JScrollPane scrAvion = new JScrollPane();
 		tabbedPane.addTab("Arrivo de Aviones", null, scrAvion, null);
@@ -131,42 +134,30 @@ public class Ventana extends JFrame {
 		JScrollPane scrDesabor = new JScrollPane();
 		tabbedPane.addTab("Desabordaje", null, scrDesabor, null);
 		
-		JLabel lbDesabor = new JLabel("New label");
+		JLabel lbDesabor = new JLabel();
 		scrDesabor.setViewportView(lbDesabor);
-		
-		JScrollPane scrDesk = new JScrollPane();
-		tabbedPane.addTab("Escritorios (registro)", null, scrDesk, null);
-		
-		JLabel lbDesk = new JLabel("New label");
-		scrDesk.setViewportView(lbDesk);
 		
 		JScrollPane scrMaleta = new JScrollPane();
 		tabbedPane.addTab("Maletas", null, scrMaleta, null);
 		
-		JLabel lbMaleta = new JLabel("New label");
+		JLabel lbMaleta = new JLabel();
 		scrMaleta.setViewportView(lbMaleta);
 		
 		JScrollPane scrEstacion = new JScrollPane();
 		tabbedPane.addTab("Estaciones", null, scrEstacion, null);
 		
-		JLabel lbEstacion = new JLabel("New label");
+		JLabel lbEstacion = new JLabel();
 		scrEstacion.setViewportView(lbEstacion);		
+		
+		JScrollPane scrDesk = new JScrollPane();
+		tabbedPane.addTab("Escritorios (registro)", null, scrDesk, null);
+		
+		JLabel lbDesk = new JLabel();
+		scrDesk.setViewportView(lbDesk);
 	
 		JTextArea textArea = new JTextArea();
 		textArea.setAutoscrolls(false);
 		textArea.setEditable(false);
-		//textArea.setAutoscrolls(false);
-		//textArea.setAutoscrolls(false);
-		//imprimir(textArea);
-		/*textArea.setText("que lkjksdljf"
-				+ "kljasldljñlksdf"
-				+ "ñkajsdñlkjf"
-				+ "ñlkajsdñljf"
-				+ "ñjaskldjf"
-				+ "ñasdkjlñkfj"
-				+ "que lesloq "
-				+ "honrarios");
-		textArea.setEnabled(false);*/
 		textArea.setForeground(Color.WHITE);
 		textArea.setCaretColor(Color.WHITE);
 		textArea.setBackground(Color.BLACK);
@@ -187,23 +178,52 @@ public class Ventana extends JFrame {
 		btnEmpezar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				
-				
 				textArea.setText(null);
-				
+				textArea.getText().equals("");
 				aux = 0;
-				if(cantidadA.getText().equals("")||cantidadE.getText().equals("")) {
+				
+				if(cantidadA.getText().equals("")||cantidadE.getText().equals("")||numeroE.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,"POR FAVOR INGRESA NUMERO DE ESTACIONES Y AVIONES");
 				}
 				else {
+					lbGeneral.setIcon(null);
+					lbAvion.setIcon(null);
+					lbDesabor.setIcon(null);
+					lbMaleta.setIcon(null);
+					lbDesk.setIcon(null);
+					lbEstacion.setIcon(null);
+					
+					la.primero = null;
+					le.primero = null;
+					lm.primero = null;
+					cp.primero = null;
+					les.primero = null;
+					
 					textArea.setText("	Se iniciara ahora con la simulacion de:"+"\n");
-					textArea.append("	  Numero de aviones: "+cantidadA.getText()+"\n");
-					textArea.append("	  Numero de estaciones: "+cantidadE.getText()+"\n");
-					textArea.append("	PULSA EL BOTON -- Pasar Turno -- PARA EMPEZAR CON EL ARRIVO DE LOS AVIONES."+"\n"+"\n");
+					textArea.append("	Numero de aviones: "+cantidadA.getText()+"\n");
+					textArea.append("	Numero de Escritorios: "+numeroE.getText()+"\n");
+					textArea.append("	Numero de estaciones: "+cantidadE.getText()+"\n");
+					textArea.append("      PULSA EL BOTON -- Pasar Turno -- PARA EMPEZAR CON EL ARRIVO DE LOS AVIONES."+"\n"+"\n");
+					
+					int ne = Integer.parseInt(numeroE.getText());
+					for(char u = 65,  p = 1;u<=(65+ne)&&p<=ne;u++,p++) {
+						les.insertarFinal(p,u);
+						les.buscar(p).setCola(new ColaReg());
 					}
+					
+					int es = Integer.parseInt(cantidadE.getText());
+					for(int k = 1;k<=es;k++) {
+						le.insertarFinal(new NodoEstacion(k));
+						
+					}
+					
+					
+				}
+				
+				
 				//textArea.append("	"+new String(Integer.toString(la.contar())));
 			}
-		});
+		});//AQUI TERMINA EL ACTION LISTENER DEL BOTON EMPEZAR
 		btnEmpezar.setBounds(30, 79, 89, 23);
 		contentPane.add(btnEmpezar);
 		
@@ -217,7 +237,7 @@ public class Ventana extends JFrame {
 				
 				
 				int av = Integer.parseInt(cantidadA.getText());
-				int es = Integer.parseInt(cantidadE.getText());
+				
 				
 				aux++;
 				textArea.append("************************TURNO "+aux+"************************"+"||"+
@@ -232,15 +252,12 @@ public class Ventana extends JFrame {
 						textArea.append("	====== AVIONES EN PISTA ======");
 						la.insertarFinal(b);
 						textArea.append(la.recorrer()+"\n"+"\n");
-						//textArea.append("	TOTAL DE AVIONES EN PISTA"+new String(Integer.toString(la.contar())));
 						b++;
 						if(la.contar()==a ) {
 							fase1 = true;
 							textArea.append("========AQUI TERMINA LA SIMULACION DE LOS AVIONES ATERRIZANDO"+"==========="+"\n");
 							textArea.append("========AHORA SE PROCEDERA CON EL DESABORDAJE DE LOS PASAJEROS"+"==========="+"\n"+"\n");
 						}
-					//textArea.append("	TODOS LOS AVIONES HAN ATERRIZADO, AQUI TERMINA LA SIMULACION DE TODOS LOS AVIONES"+"\n"+"\n");
-					//textArea.append(la.recorrer()+"\n");
 					break;
 				}
 				if(la.totalDes()!=0 && fase1==true) {
@@ -271,12 +288,8 @@ public class Ventana extends JFrame {
 								}
 								la.buscar(z).setNumberP(0);
 							}
-							textArea.append(cp.recorrer());//esto esta aqui como prueba si caus algun problema remover
-							//z--;
-							//break;
+							textArea.append(cp.recorrer());
 							}
-							//TENGO QUE PONER ESTO DE NUEVO textArea.append(la.recorrer()); SI NO FUNCIONA BIEN
-							//TENGO QUE PONER ESTO DE NUVEO textArea.append(cp.recorrer()); SI NO FUNCIONA BIEN
 							if(la.totalDes()==0) {
 								
 							textArea.append("========== AQUI TERMINA LA SIMULACION DE DESABORDAJE =========="+"\n"+"\n");
@@ -287,23 +300,13 @@ public class Ventana extends JFrame {
 				}
 				
 				
-				
-				//textArea.append(new String(Integer.toString(la.totalDes())));
-				//textArea.append("	"+new String(Integer.toString(la.contar())));
-				
-				
 				//SEGUND FASE DEL DESABORDO PARA LOS AVIONES DE LOS PASAJEROS ASIGNACION DE ID, MALESTAS Y DOCUMENTOS
 				
-				//textArea.append(new String(Integer.toString(la.totalDes())));
 				
-				
-				//textArea.append(new String(Integer.toString(la.buscar(2).getNumberP())));
 				
 				//TERCER FASE DEL REGISTRO EN DONDE SE SACAN A 5 PASAJEROS POR TURNO JUNTO CON LA CANTIDAD DE MALETAS ASIGNADAS A CADA UNO
 				int i = cp.contarMaletas();
 				if(fase2 ==true && i!=lm.contar()) {
-					
-					
 					for(int j = 1;j<=i;j++) {
 					lm.insertarFinal(new NodoMaleta(j));
 					}
@@ -320,32 +323,14 @@ public class Ventana extends JFrame {
 					}
 				}
 				
-				int ne = Integer.parseInt(numeroE.getText());
-				for(char u = 65,  p = 1;u<=(65+ne)&&p<=ne;u++,p++) {
-					les.insertarFinal(p,u);
-				}
 				
-				for(int k = 1;k<=es;k++) {
-					le.insertarFinal(new NodoEstacion(k));
-				}
 				
-				/*for(int l = 1;l<=5;l++) {
-					ce.insertar(new NodoEscritorio(l));
-					//ce.recorrer();
-					
-				}*/
+				
 				//REGISTRO DE LOS PASAJEROS EN LAS TERMINALES Y SU SALIDA DEL SISTEMA JUNTO CON LAS MALETAS.
 				if(fase3==true && cp.contar()!=0) {
 					
-					/*for(int l = 1;l<=5;l++) {
-						ce.insertar(new NodoEscritorio(l));}
-					ce.recorrer();*/
-					/*while(cp.contar()!=0) {
-						for(int v = 1;v<=5;v++) {
-						ce.buscar(v).setPasajero(cp.buscar(v));;
-						}
-						break;
-					}*/
+					
+					
 					if(cp.contar()==0) {
 						
 						fase4 = true;
@@ -360,40 +345,102 @@ public class Ventana extends JFrame {
 				}
 				
 				
+				
+				
+				
+				
+				
+				
+				
+				
 				//ESTA SECCION DE CODIGO ESTA CREANTO EL DOCUMENTO Y AL IMAGEN DE LOS NODOS
 				Graficador g = new Graficador();
 				g.crearDot("lista", la.primero);
-		        g.generarImagen("lista.dot","listaDoble.png");
+		        g.generarImagen("lista.dot","listaDoble.jpg");
 				
 				Graficador h = new Graficador();
 				h.crearDot("cola", cp.primero);
-				h.generarImagen("cola.dot","colaPasajeros.png");
+				h.generarImagen("cola.dot","colaPasajeros.jpg");
 				
 				Graficador i1 = new Graficador();
-				i1.crearDot("listaMaleta", lm.primero);
-				i1.generarImagen("listaMaleta.dot","listaMalesta.png");
+				i1.crearDot("listaMaleta", lm.primero,lm.contar());
+				i1.generarImagen("listaMaleta.dot","listaMalesta.jpg");
 				
 				Graficador lem = new Graficador();
 				lem.crearDot("listaDesk", les.primero);
-				lem.generarImagen("listaDesk.dot", "listaDesk.png");
+				lem.generarImagen("listaDesk.dot", "listaDesk.jpg");
 				
 				Graficador leg = new Graficador();
 				leg.crearDot("listaEstacion", le.primero);
-				leg.generarImagen("listaEstacion.dot", "listaEstacion.png");
+				leg.generarImagen("listaEstacion.dot", "listaEstacion.jpg");
 				
+				Graficador general = new Graficador();
+				general.crearDot("general",cp.primero,la.primero,les.primero,le.primero,lm.primero,lm.contar());
+				general.generarImagen("general.dot","general.jpg");
 				
-				lbAvion.setIcon(new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaDoble.png"));
-				lbAvion.repaint();
+				ImageIcon image = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaDoble.jpg");
+				image.getImage().flush();
+				lbAvion.setIcon(image);
+				
+				ImageIcon image2 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\colaPasajeros.jpg");
+				image2.getImage().flush();
+				lbDesabor.setIcon(image2);
+				
+				ImageIcon image3 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaMalesta.jpg");
+				image2.getImage().flush();
+				lbMaleta.setIcon(image3);
+				
+				ImageIcon image4 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaEstacion.jpg");
+				image4.getImage().flush();
+				lbEstacion.setIcon(image4);
+				
+				ImageIcon image5 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaDesk.jpg");
+				image5.getImage().flush();
+				lbDesk.setIcon(image5);
+				
+				ImageIcon image6 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\general.jpg");
+				image6.getImage().flush();
+				lbGeneral.setIcon(image6);
+				
 			}
 		});
 		btnPasarTurno.setBounds(144, 79, 107, 23);
 		contentPane.add(btnPasarTurno);
 		
+		JButton btnGenActualizar = new JButton("Gen / Actualizar Grafico");
+		btnGenActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				ImageIcon image = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaDoble.jpg");
+				image.getImage().flush();
+				lbAvion.setIcon(image);
+				
+				ImageIcon image2 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\colaPasajeros.jpg");
+				image2.getImage().flush();
+				lbDesabor.setIcon(image2);
+				
+				ImageIcon image3 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaMalesta.jpg");
+				image3.getImage().flush();
+				lbMaleta.setIcon(image3);
+				
+				ImageIcon image4 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaEstacion.jpg");
+				image4.getImage().flush();
+				lbEstacion.setIcon(image4);
+				
+				ImageIcon image5 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\listaDesk.jpg");
+				image5.getImage().flush();
+				lbDesk.setIcon(image5);
+				
+				ImageIcon image6 = new ImageIcon("C:\\Users\\aiyel\\eclipse-workspace\\Proyecto2IPC\\general.jpg");
+				image6.getImage().flush();
+				lbGeneral.setIcon(image6);
+				
+			}
+		});
+		btnGenActualizar.setBounds(504, 7, 180, 23);
+		contentPane.add(btnGenActualizar);
 		
-		
-		
-		
-		
+			
 
 	}
 	
@@ -403,7 +450,9 @@ public class Ventana extends JFrame {
 		 for(int a =0 ;a<7;a++) {
 			 tx.append(s);
 		 }
-		
+	}
+	
+	public void graficar() {
 		
 	}
 }

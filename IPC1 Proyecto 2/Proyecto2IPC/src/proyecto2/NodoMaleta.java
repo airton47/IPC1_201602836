@@ -8,13 +8,14 @@ public class NodoMaleta {
 	public NodoMaleta anterior;
 	
 	public NodoMaleta() {
-		
+		this.siguiente = null;
+		this.anterior = null;
 	}
 	
 	public NodoMaleta(int id) {
 		this.id = id;
 		this.siguiente = null;
-		
+		this.anterior = null;
 	}
 
 	public int getId() {

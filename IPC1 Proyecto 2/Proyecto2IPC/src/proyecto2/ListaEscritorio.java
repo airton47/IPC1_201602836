@@ -5,6 +5,7 @@ package proyecto2;
 public class ListaEscritorio {
 	
 public NodoEscritorio primero;
+
 	
 public void insertarInicio(int id){
     NodoEscritorio nuevo=new NodoEscritorio(id);
@@ -72,7 +73,11 @@ public String recorrer(){
     }else{
         NodoEscritorio aux=primero;
         while (aux!=null){
-        	s.append("  ESCRITORIO "+aux.getLetter()+"\n"+"\n"+"\n");
+        	s.append("  ESCRITORIO "+aux.getLetter()+" "+"["+aux.getEstado()+"]"+"\n"/**/);
+        	if(aux.pasajero!=null) {
+        		s.append("	PASAJERO ID "+aux.pasajero.getId()+"\n"+"	DOCUMENTOS "+aux.pasajero.getDocumentos()+"\n"
+        	+"	TURNOS "+aux.pasajero.getTurnos()+"\n");
+        	}
         	cadena = s.toString();
             aux=aux.siguiente;
         }
@@ -130,5 +135,14 @@ public NodoEscritorio buscar(int id) {
 	}
 	return aux;
 }
+
+public NodoEscritorio getPrimero() {
+	return primero;
+}
+
+public void setPrimero(NodoEscritorio primero) {
+	this.primero = primero;
+}
+
 	
 }

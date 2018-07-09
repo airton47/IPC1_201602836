@@ -53,18 +53,41 @@ public class ListaEstacion {
         }
       }
 	 
-	 public void recorrer(){
+	 public String recorrer(){
+		String cadena = "";
+		StringBuffer s = new StringBuffer();
+		s.setLength(0);
+		s.append("\n");
 	        if(primero==null){
-	            System.out.println("LISTA VACIA");
+	        	s.append("LISTA VACIA"+"\n") ;
+	        	//System.out.println("LISTA VACIA");
 	        }else{
 	            NodoEstacion aux=primero;
 	            while (aux!=null){
-	                System.out.print("	ESTACION "+aux.getId()+" "+"\n"+"\n");
+	            	s.append("  ESTACION "+aux.getId()+" "+"["+aux.getEstado()+"]"+"\n");
+	            	if(aux.avion!=null) {
+	            		s.append("	AVION ID "+aux.avion.getId()+"\n"+"	TURNOS "+aux.avion.getNumberM()+"\n"+"\n");
+	            	}
+	            	cadena = s.toString();
+	                //System.out.print("	ESTACION "+aux.getId()+" "+"\n"+"\n");
+	                
 	                aux=aux.siguiente;
 	            }
 	            System.out.println(" NULL");
 	        }
-	    
-	       }
+	    return cadena;
+	   }
+	 
+	 public NodoEstacion buscar(int id) {
+			NodoEstacion aux = primero;
+	    	if(aux==null) {
+	    		System.out.println("La lista esta vacia");
+			}else {
+				while(aux.getId()!=id) {
+					aux = aux.siguiente;
+				}
+			}
+	    	return aux;
+	    }
 	
 }

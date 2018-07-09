@@ -16,6 +16,7 @@ public class NodoPasajero {
 		this.id = id;
 		setMaletas();
 		setDocumentos();
+		setTurnos();
 	}
 	
 	public NodoPasajero(int id) {

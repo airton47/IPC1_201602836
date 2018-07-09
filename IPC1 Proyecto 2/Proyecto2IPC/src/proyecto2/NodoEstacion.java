@@ -8,14 +8,16 @@ public class NodoEstacion {
 	public NodoEstacion siguiente;
 	
 	public NodoEstacion() {
-		
+		this.avion = null;
+		this.siguiente = null;
+		setEstado(estado);
 	}
 	
 	public NodoEstacion(int id) {
 		this.id = id;
-		this.avion = avion;
+		this.avion = null;
 		this.siguiente = null;
-		this.estado = "untaken";
+		setEstado(estado);
 	}
 
 	public int getId() {
@@ -31,6 +33,11 @@ public class NodoEstacion {
 	}
 
 	public void setAvion(NodoAvion avion) {
+		if(avion!=null) {
+			this.estado = "OCUPADO";
+		}else {
+			this.estado ="LIBRE";
+		}
 		this.avion = avion;
 	}
 
@@ -39,6 +46,12 @@ public class NodoEstacion {
 	}
 
 	public void setEstado(String estado) {
+		NodoAvion aux = this.avion;
+		if(aux==null) {
+			estado = "LIBRE";
+		}else {
+			estado = "OCUPADO";
+		}
 		this.estado = estado;
 	}
 

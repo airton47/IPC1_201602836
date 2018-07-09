@@ -23,14 +23,15 @@ public NodoPasajero primero;
 		}
 	}
 	
-	public void eliminar(Integer id) {
-		NodoPasajero aux = primero;
-		if(aux!=null) {
-			aux.siguiente = primero;
-			
-		}else {
-			verificar();
-		}
+	public void eliminar() {
+            if(primero!=null){
+                   NodoPasajero aux=primero;
+                   NodoPasajero ant=null;
+                     primero=primero.siguiente;
+                     aux=null;
+         }else{
+             System.out.println("Lista Vacia");
+         }
 	}
 	
 	public boolean verificar() {
@@ -56,7 +57,7 @@ public NodoPasajero primero;
             NodoPasajero aux=primero;
             while (aux!=null){
             	s.append("	ID DE PASAJERO "+aux.getId()+"\n"+"	  NUMERO DE MALETAS "+aux.getMaletas()+"\n"
-            +"	  NUMERO DE DOCUMENTOS "+aux.getDocumentos()+"\n"+ "\n");
+            +"	  TURNOS "+aux.getTurnos()+"\n"+"	  NUMERO DE DOCUMENTOS "+aux.getDocumentos()+"\n"+ "\n");
             	cadena = s.toString();
                 aux=aux.siguiente;
             } 
