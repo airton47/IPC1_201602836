@@ -1,0 +1,10 @@
+digraph listaEstacion{
+nodo445155034[label="ESTACION 1 [LIBRE]"];
+nodo445155034->nodo1516676201;
+nodo1516676201[label="ESTACION 2 [LIBRE]"];
+nodo1516676201->nodo740536454;
+nodo740536454[label="ESTACION 3 [LIBRE]"];
+nodo740536454->nodo1920060625;
+nodo1920060625[label="ESTACION 4 [LIBRE]"];
+
+}
